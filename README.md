@@ -15,7 +15,7 @@ O sistema foi criado usando MySql como servidor de banco de dados, no refactor c
 # Clonar e Rodar o Sistema
 
 Para rodar o sistema é necessário clonar o repositório para seu ambiente local, e rodar o arquivo ControleVendas.sql no SQL Server.
-o login inicial é:
+O login inicial é:
 * Usuário: admin@admin.com
 * Senha: admin
 
