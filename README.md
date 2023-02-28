@@ -1,4 +1,4 @@
-# ControleDeVendas
+# Controle De Vendas
  Sistema de controle de vendas usado como base de estudos.
 
 # Dinâmica E Objetivos:
