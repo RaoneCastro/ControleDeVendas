@@ -1,4 +1,4 @@
-# ControleDeVendas
+# Controle De Vendas
  Sistema de controle de vendas usado como base de estudos.
 
 # Dinâmica E Objetivos:
@@ -15,4 +15,7 @@ O sistema foi criado usando MySql como servidor de banco de dados, no refactor c
 # Clonar e Rodar o Sistema
 
 Para rodar o sistema é necessário clonar o repositório para seu ambiente local, e rodar o arquivo ControleVendas.sql no SQL Server.
+O login inicial é:
+* Usuário: admin@admin.com
+* Senha: admin
 
