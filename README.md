@@ -6,7 +6,7 @@
  O projeto iniciará como um simples sistema para controle de vendas, usando inicialmente abordagens/tecnologias/dinâmicas simples para ser evoluído como forma de estudo e prática de tecnologias atuais.
 Implementar o uso do Entity Framework Core, implementar Middlewares, utilizar de microsserviços, são exemplos dos próximos passos a serem abordados neste projeto.
 
-#Tecologias iniciais:
+#Tecnologias iniciais:
 
 Inicialmente o sistema usava Asp.Net Core 1.1, mas para efeitos de estudos foi feito um refactor com Asp.Net Core 5.0.
 
