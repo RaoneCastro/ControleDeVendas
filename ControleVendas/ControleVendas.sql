@@ -1,0 +1,79 @@
+CREATE DATABASE  SistemaVendas 
+USE SistemaVendas
+
+IF (NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES  WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'Cliente'))
+BEGIN
+
+CREATE TABLE Cliente(
+	Id INT NOT NULL PRIMARY KEY IDENTITY,
+	Nome VARCHAR(100) NOT NULL,
+	CPF_CNPJ VARCHAR(255) NOT NULL,
+	Email VARCHAR(255) NOT NULL,
+	Senha VARCHAR(255) NOT NULL,
+)
+END
+
+IF (NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES  WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'Produto'))
+BEGIN
+
+CREATE TABLE Produto(
+	Id INT NOT NULL PRIMARY KEY IDENTITY,
+	Nome VARCHAR(45) NOT NULL,
+	Descricao TEXT NOT NULL,
+	Preco_unitario DECIMAL(9,2) NOT NULL,
+	Quantidade_estoque DECIMAL(9,2) NOT NULL,
+	Unidade_medida CHAR(3) NOT NULL,
+	Link_foto VARCHAR(255) NOT NULL
+)
+END
+
+
+IF (NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES  WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'Venda'))
+BEGIN
+
+CREATE TABLE Venda(
+	Id INT NOT NULL PRIMARY KEY IDENTITY,
+	Data DATETIME NOT NULL,
+	Total DECIMAL(9,2) NOT NULL,
+	Vendedor_id INT NOT NULL,
+	Cliente_id INT NOT NULL,
+  INDEX fk_Venda_Vendedor_idx (Vendedor_id ASC),
+  INDEX fk_Venda_Cliente_idx (Cliente_id ASC),
+  CONSTRAINT fk_Venda_Vendedor
+    FOREIGN KEY (Vendedor_id)
+    REFERENCES Vendedor(Id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_Venda_Cliente
+    FOREIGN KEY (Cliente_id)
+    REFERENCES Cliente (Id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+)
+END
+
+
+IF (NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES  WHERE TABLE_SCHEMA = 'dbo' AND  TABLE_NAME = 'Itens_Venda'))
+BEGIN
+
+CREATE TABLE Itens_Venda (
+  Venda_id INT NOT NULL,
+  Produto_id INT NOT NULL,
+  qtde_produto DECIMAL(9,2) NULL,
+  preco_produto DECIMAL(9,2) NULL,
+  PRIMARY KEY (Venda_id, Produto_id),
+  INDEX fk_Venda_has_Produto_Produto1_idx (Produto_id ASC),
+  INDEX fk_Venda_has_Produto_Venda1_idx (Venda_id ASC),
+  CONSTRAINT fk_Venda_has_Produto_Venda
+    FOREIGN KEY (Venda_id)
+    REFERENCES Venda (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_Venda_has_Produto_Produto
+    FOREIGN KEY (Produto_id)
+    REFERENCES Produto (id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ END
+ 
+ --ALTER TABLE Cliente ADD PRIMARY KEY(Id)
