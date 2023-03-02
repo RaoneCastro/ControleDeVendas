@@ -7,6 +7,7 @@ namespace SistemaVendas.Models
 {
     public class ItemVendaModel
     {
+        public string Id { get; set; }
         public string CodigoProduto { get; set; }
         public string DescricaoProduto { get; set; }
         public string QtdeProduto { get; set; }

@@ -14,7 +14,7 @@ namespace ControleVendas.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                 @"server=localhost\; database=SistemaVendas; Trusted_Connection=True;");
+                 @"server=localhost\; database=SistemaVendas; Trusted_Connection=True; trustservercertificate=true");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +25,8 @@ namespace ControleVendas.Models
         public DbSet<ProdutoModel> Produtos { get; set; }
         public DbSet<LoginModel> Logins { get; set; }
         public DbSet<VendaModel> Vendas { get; set; }
+        public DbSet<ItemVendaModel> ItensVenda { get; set; }
+        public DbSet<RelatorioModel> Relatorios{ get; set; }
 
     }
 }

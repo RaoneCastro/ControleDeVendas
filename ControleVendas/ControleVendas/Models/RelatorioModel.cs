@@ -9,6 +9,7 @@ namespace SistemaVendas.Models
 {
     public class RelatorioModel
     {
+        public string Id { get; set; }
         public DateTime DataDe { get; set; }
         public DateTime DataAte { get; set; }        
     }

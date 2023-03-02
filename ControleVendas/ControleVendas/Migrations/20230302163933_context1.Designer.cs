@@ -4,6 +4,7 @@ using ControleVendas.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ControleVendas.Migrations
 {
     [DbContext(typeof(ControleVendasContext))]
-    partial class ControleVendasContextModelSnapshot : ModelSnapshot
+    [Migration("20230302163933_context1")]
+    partial class context1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +47,7 @@ namespace ControleVendas.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clientes");
+                    b.ToTable("Cliente");
                 });
 
             modelBuilder.Entity("SistemaVendas.Models.ItemVendaModel", b =>
@@ -69,7 +72,7 @@ namespace ControleVendas.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ItensVenda");
+                    b.ToTable("ItenVenda");
                 });
 
             modelBuilder.Entity("SistemaVendas.Models.LoginModel", b =>
@@ -90,7 +93,7 @@ namespace ControleVendas.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Logins");
+                    b.ToTable("Login");
                 });
 
             modelBuilder.Entity("SistemaVendas.Models.ProdutoModel", b =>
@@ -124,7 +127,7 @@ namespace ControleVendas.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Produtos");
+                    b.ToTable("Produto");
                 });
 
             modelBuilder.Entity("SistemaVendas.Models.RelatorioModel", b =>
@@ -140,7 +143,7 @@ namespace ControleVendas.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Relatorios");
+                    b.ToTable("Relatorio");
                 });
 
             modelBuilder.Entity("SistemaVendas.Models.VendaModel", b =>
@@ -165,7 +168,7 @@ namespace ControleVendas.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vendas");
+                    b.ToTable("Venda");
                 });
 
             modelBuilder.Entity("SistemaVendas.Models.VendedorModel", b =>
@@ -186,7 +189,7 @@ namespace ControleVendas.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vendedores");
+                    b.ToTable("Vendedor");
                 });
 #pragma warning restore 612, 618
         }
