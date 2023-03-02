@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ControleVendas.Uteis;
+using ControleVendas.Models;
 
 namespace SistemaVendas
 {
@@ -32,6 +32,7 @@ namespace SistemaVendas
             services.AddSession();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddDbContext<ControleVendasContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
