@@ -34,10 +34,10 @@ namespace ControleVendas.Service
             {
                 item = new VendedorModel
                 {
-                    Id = dt.Rows[i]["Id"].ToString(),
-                    Nome = dt.Rows[i]["Nome"].ToString(),
-                    Email = dt.Rows[i]["Email"].ToString(),
-                    Senha = dt.Rows[i]["Senha"].ToString()
+                    //Id = dt.Rows[i]["Id"].ToString(),
+                    //Nome = dt.Rows[i]["Nome"].ToString(),
+                    //Email = dt.Rows[i]["Email"].ToString(),
+                    //Senha = dt.Rows[i]["Senha"].ToString()
                 };
                 lista.Add(item);
             }
@@ -54,10 +54,10 @@ namespace ControleVendas.Service
 
             item = new VendedorModel
             {
-                Id = dt.Rows[0]["Id"].ToString(),
-                Nome = dt.Rows[0]["Nome"].ToString(),
-                Email = dt.Rows[0]["Email"].ToString(),
-                Senha = dt.Rows[0]["Senha"].ToString()
+                //Id = dt.Rows[0]["Id"].ToString(),
+                //Nome = dt.Rows[0]["Nome"].ToString(),
+                //Email = dt.Rows[0]["Email"].ToString(),
+                //Senha = dt.Rows[0]["Senha"].ToString()
             };
 
             return item;

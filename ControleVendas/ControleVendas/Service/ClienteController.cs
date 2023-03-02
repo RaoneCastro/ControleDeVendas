@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ControleVendas.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
 using SistemaVendas.Models;
 using SistemaVendas.Uteis;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace ControleVendas.Service
 {
@@ -12,6 +15,7 @@ namespace ControleVendas.Service
         {
             List<ClienteModel> lista = new List<ClienteModel>();
             ClienteModel item;
+
             DAL objDAL = new DAL();
             string sql = "SELECT id, nome, cpf_cnpj, email, senha FROM Cliente order by nome asc";
             DataTable dt = objDAL.RetDataTable(sql);
@@ -20,11 +24,11 @@ namespace ControleVendas.Service
             {
                 item = new ClienteModel
                 {
-                    Id = dt.Rows[i]["Id"].ToString(),
-                    Nome = dt.Rows[i]["Nome"].ToString(),
-                    CPF = dt.Rows[i]["cpf_cnpj"].ToString(),
-                    Email = dt.Rows[i]["Email"].ToString(),
-                    Senha = dt.Rows[i]["Senha"].ToString()
+                    //Id = dt.Rows[i]["Id"].ToString(),
+                    //Nome = dt.Rows[i]["Nome"].ToString(),
+                    //CPF = dt.Rows[i]["cpf_cnpj"].ToString(),
+                    //Email = dt.Rows[i]["Email"].ToString(),
+                    //Senha = dt.Rows[i]["Senha"].ToString()
                 };
                 lista.Add(item);
             }
@@ -42,11 +46,11 @@ namespace ControleVendas.Service
             
             item = new ClienteModel
             {
-                Id = dt.Rows[0]["Id"].ToString(),
-                Nome = dt.Rows[0]["Nome"].ToString(),
-                CPF = dt.Rows[0]["cpf_cnpj"].ToString(),
-                Email = dt.Rows[0]["Email"].ToString(),
-                Senha = dt.Rows[0]["Senha"].ToString()
+                //Id = dt.Rows[0]["Id"].ToString(),
+                //Nome = dt.Rows[0]["Nome"].ToString(),
+                //CPF = dt.Rows[0]["cpf_cnpj"].ToString(),
+                //Email = dt.Rows[0]["Email"].ToString(),
+                //Senha = dt.Rows[0]["Senha"].ToString()
             };
           
             return item;
