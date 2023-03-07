@@ -10,7 +10,7 @@ namespace GerenciamentoVendas.Service.Controllers
     {
         public LoginModel ValidarLogin(LoginModel model)
         {
-            string sql = $"SELECT ID, NOME FROM VENDEDOR WHERE EMAIL=@email AND SENHA=@senha";
+            string sql = $"SELECT ID, NOME FROM VENDEDORES WHERE EMAIL=@email AND SENHA=@senha";
             SqlCommand Command = new SqlCommand();
             Command.CommandText = sql;
             Command.Parameters.AddWithValue("@email", model.Email);
