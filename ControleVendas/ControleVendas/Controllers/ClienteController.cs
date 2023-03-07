@@ -8,6 +8,8 @@ namespace SistemaVendas.Controllers
     {
         public IActionResult Index()
         {
+            var context = new ControllerContext();
+
             var response = new ControleVendas.Service.ClienteController();
 
             ViewBag.ListaClientes = response.ListarTodosClientes();

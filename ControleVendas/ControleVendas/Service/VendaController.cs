@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ControleVendas.Models;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SistemaVendas.Models;
 using SistemaVendas.Uteis;
@@ -10,6 +11,7 @@ namespace ControleVendas.Service
 {
     public class VendaController : Controller
     {
+        private readonly IControleVendasContext _contextFactory;
         //Para atender o filtro do relatório
         public List<VendaModel> ListagemVendas(string DataDe, string DataAte)
         {

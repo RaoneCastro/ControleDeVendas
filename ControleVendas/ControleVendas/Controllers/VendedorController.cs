@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ControleVendas.Models;
+using Microsoft.AspNetCore.Mvc;
 using SistemaVendas.Models;
 
 namespace ControleVendas.Controllers
 {
     public class VendedorController : Controller
     {
-     
         public IActionResult Index()
         {
-            ViewBag.ListaVendedores = new ControleVendas.Service.VendedorController().ListarTodosVendedores();
+            ViewBag.ListaVendedores = new Service.VendedorController().ListarTodosVendedores();
             return View();
         }
 

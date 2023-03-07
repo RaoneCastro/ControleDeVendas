@@ -14,26 +14,13 @@ namespace ControleVendas.Service
         public List<ClienteModel> ListarTodosClientes()
         {
             List<ClienteModel> lista = new List<ClienteModel>();
-            ClienteModel item;
 
-            DAL objDAL = new DAL();
-            string sql = "SELECT id, nome, cpf_cnpj, email, senha FROM Cliente order by nome asc";
-            DataTable dt = objDAL.RetDataTable(sql);
-
-            for (int i = 0; i < dt.Rows.Count; i++)
+            using (var db = new ControleVendasContext())
             {
-                item = new ClienteModel
-                {
-                    //Id = dt.Rows[i]["Id"].ToString(),
-                    //Nome = dt.Rows[i]["Nome"].ToString(),
-                    //CPF = dt.Rows[i]["cpf_cnpj"].ToString(),
-                    //Email = dt.Rows[i]["Email"].ToString(),
-                    //Senha = dt.Rows[i]["Senha"].ToString()
-                };
-                lista.Add(item);
-            }
+                lista = db.Clientes.ToList();
 
-            return lista;
+                return lista;
+            }
         }
 
         //SELECT
@@ -41,7 +28,7 @@ namespace ControleVendas.Service
         {
             ClienteModel item;
             DAL objDAL = new DAL();
-            string sql = $"SELECT id, nome, cpf_cnpj, email, senha FROM Cliente where id ='{id}' order by nome asc";
+            string sql = $"SELECT id, nome, cpf_cnpj, email, senha FROM Clientes where id ='{id}' order by nome asc";
             DataTable dt = objDAL.RetDataTable(sql);
             
             item = new ClienteModel
@@ -59,19 +46,35 @@ namespace ControleVendas.Service
         //INSERT E UPDATE
         public void Gravar(ClienteModel cliente)
         {
-            DAL objDAL = new DAL();
-            string sql = string.Empty;
-
-            if (cliente.Id != null)
+            using (var db = new ControleVendasContext())
             {
-                sql = $"UPDATE CLIENTE SET NOME='{cliente.Nome}', CPF_CNPJ='{cliente.CPF}', EMAIL='{cliente.Email}' where id = '{cliente.Id}'";
-            }
-            else
-            {
-                sql = $"INSERT INTO CLIENTE(NOME, CPF_CNPJ, EMAIL, SENHA) VALUES('{cliente.Nome}','{cliente.CPF}','{cliente.Email}','{cliente.Senha}')";
-            }
+                var clienteExistente = db.Clientes.FirstOrDefault(x => x.Id == cliente.Id);
 
-            objDAL.ExecutarComandoSQL(sql);
+                if (clienteExistente == null)
+                {
+                    db.Clientes.Add(cliente);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    clienteExistente = cliente;
+                    db.SaveChanges();
+
+                }
+            }
+            //DAL objDAL = new DAL();
+            //string sql = string.Empty;
+
+            //if (cliente.Id != null)
+            //{
+            //    sql = $"UPDATE CLIENTE SET NOME='{cliente.Nome}', CPF_CNPJ='{cliente.CPF}', EMAIL='{cliente.Email}' where id = '{cliente.Id}'";
+            //}
+            //else
+            //{
+            //    sql = $"INSERT INTO CLIENTE(NOME, CPF_CNPJ, EMAIL, SENHA) VALUES('{cliente.Nome}','{cliente.CPF}','{cliente.Email}','{cliente.Senha}')";
+            //}
+
+            //objDAL.ExecutarComandoSQL(sql);
         }
 
 
@@ -79,7 +82,7 @@ namespace ControleVendas.Service
         public void Excluir(int id)
         {
             DAL objDAL = new DAL();
-            string sql = $"DELETE FROM CLIENTE WHERE ID='{id}'";
+            string sql = $"DELETE FROM CLIENTES WHERE ID='{id}'";
             objDAL.ExecutarComandoSQL(sql);
         }
     }

@@ -1,48 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ControleVendas.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SistemaVendas.Models;
 using SistemaVendas.Uteis;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace ControleVendas.Service
 {
     public class VendedorController : Controller
     {
-        //private readonly IDbContextFactory<ControleVendasContext> _contextFactory;
+        //private readonly IControleVendasContext _contextFactory;
 
-        //public VendedorController(IDbContextFactory<ControleVendasContext> contextFactory)
+        //public VendedorController(IControleVendasContext contextFactory)
         //{
         //    _contextFactory = contextFactory;
         //}
+
         public List<VendedorModel> ListarTodosVendedores()
         {
-            //List<VendedorModel> vendedores = new List<VendedorModel>();    
-            //using (var db = _contextFactory.CreateDbContext())
-            //{
-            //   vendedores = db.Vendedores.ToList();
-            //}
-            //ViewBag.ListaVendedores = vendedores;
-            //return View();
-
-            List<VendedorModel> lista = new List<VendedorModel>();
-            VendedorModel item;
-            DAL objDAL = new DAL();
-            string sql = "SELECT id, nome, email, senha FROM Vendedor order by nome asc";
-            DataTable dt = objDAL.RetDataTable(sql);
-
-            for (int i = 0; i < dt.Rows.Count; i++)
+            using(var db = new ControleVendasContext())
             {
-                item = new VendedorModel
-                {
-                    //Id = dt.Rows[i]["Id"].ToString(),
-                    //Nome = dt.Rows[i]["Nome"].ToString(),
-                    //Email = dt.Rows[i]["Email"].ToString(),
-                    //Senha = dt.Rows[i]["Senha"].ToString()
-                };
-                lista.Add(item);
-            }
+                List<VendedorModel> lista = new List<VendedorModel>();
 
-            return lista;
+                return lista = db.Vendedores.ToList();
+            }
         }
 
         public VendedorModel RetornarVendedor(int? id)
